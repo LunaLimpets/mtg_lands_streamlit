@@ -3,13 +3,7 @@ import plotly.express as px
 import pandas as pd
 
 #test
-grouped_df = pd.DataFrame({
-    'name': ['Land 1', 'Land 2', 'Land 3'],
-    'usd': [100, 200, 300],
-    'set': ['Set A', 'Set B', 'Set C'],
-    'usd_foil': [120, 220, 320],
-    'usd_etched': [130, 230, 330],
-})
+grouped_df = pd.read_csv('grouped_lands.csv')
 
 
 st.title("Market Share of Basic Lands by Set")
