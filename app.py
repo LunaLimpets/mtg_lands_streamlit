@@ -34,10 +34,10 @@ fig.update_layout(
 
 fig.update_layout(
     title={
-        'text': "Market Share of Basic Lands by Set<br><sup>sorted by initial release date</sup>",  
+        'text': "Price of Lands per Set<br><sup>sorted by initial release date</sup>",  
         'font': {
             'size': 24,          
-            'color': "Black"     
+            # 'color': "Black"     
         },
         'x': 0.5,               
         'xanchor': 'center',   
