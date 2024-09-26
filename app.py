@@ -15,16 +15,22 @@ fig = px.bar_polar(
     r='usd',
     hover_data=['set', 'usd', 'usd_foil', 'usd_etched'],
     color='set', 
-    height=600,
+    height=1000,
 )
 
-fig.update_layout(legend=dict(
-    orientation="h",
-    yanchor="bottom",
-    y=-.05,
-    xanchor="right",
-    x=1
-))
+fig.update_layout(
+    legend=dict(
+    #     orientation="v",
+    #     yanchor="bottom",
+    #     y=1,  
+    #     xanchor="right",
+    #     x=1,
+    #     title=dict(font=dict(size=14)), 
+    #     font=dict(size=12) 
+    ),
+    margin=dict(t=50, b=50, l=50, r=50)  
+)
+
 
 fig.update_layout(
     title={
