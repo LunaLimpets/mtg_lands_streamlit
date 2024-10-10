@@ -6,9 +6,23 @@ import pandas as pd
 st.set_page_config(layout="wide")
 
 grouped_df = pd.read_csv('grouped_lands.csv')
+sets = grouped_df['set']
 
 st.title("Total Price of Basic Lands by Set ")
 st.header("Data From Scryfall.com")
+
+mode = st.radio(
+        "Select Mode:",
+        ('All Sets', 'One Set')
+    )
+
+if mode == "All Sets":
+    vis_df = grouped_df
+else:
+    dropdown_value = st.selectbox('Select a  Set', grouped_df['set'].unique())
+    vis_df = grouped_df.loc[grouped_df['set'] == dropdown_value]
+
+
 
 col1, col2, col3 = st.columns([0.3, 0.3, 0.3])
 with col2:
@@ -37,7 +51,7 @@ with col1:
 
 if chart_type == 'Polar Chart':
     fig = px.bar_polar(
-        grouped_df, 
+        vis_df, 
         theta='name', 
         r='usd',
         hover_data=['set', 'usd', 'usd_foil', 'usd_etched'],
@@ -78,7 +92,7 @@ if chart_type == 'Polar Chart':
 
 elif chart_type == 'Bar Chart':
     fig = px.bar(
-        grouped_df, 
+        vis_df, 
         x='name', 
         y='usd', 
         color='set', 
