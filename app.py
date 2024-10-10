@@ -10,10 +10,19 @@ grouped_df = pd.read_csv('grouped_lands.csv')
 st.title("Total Price of Basic Lands by Set ")
 st.header("Data From Scryfall.com")
 
-col1, col2 = st.columns([3, 1])
+col1, col2, col3 = st.columns([0.3, 0.3, 0.3])
 with col2:
     st.markdown(
-        '''<div style="text-align: Left;  display: inline-block;width: auto; left:30%"><h4>For Easier Viewing:</h4>
+        '''<div style="text-align: Centure;  display: inline-block;width: auto; left:30%"><h4>Notes/Warnings:</h4>
+        <li>This data is not live</li>
+        <li>Last update from scryfall was in early October 2024</li>
+        <li>This only displays cards with a USD price</li>
+        </div>
+        ''', unsafe_allow_html=True
+    ) 
+with col3:
+    st.markdown(
+        '''<div style="text-align: Left;  display: inline-block;width: auto; left:30%;margin-bottom:5%"><h4>For Easier Viewing:</h4>
         <li>View in "Fullscreen" or on Desktop</li>
         <li>Ctrl+F and Click set name in Legend to remove from graph</li>
         <li>Mouseover/Touch for details</li>
