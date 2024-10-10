@@ -11,7 +11,6 @@ chart_type = st.radio(
     ('Polar Chart', 'Bar Chart')
 )
 
-# Create Polar Chart
 if chart_type == 'Polar Chart':
     fig = px.bar_polar(
         grouped_df, 
@@ -29,7 +28,7 @@ if chart_type == 'Polar Chart':
 
     fig.update_layout(
         title={
-            'text': "Price of Lands per Set<br><sup>Data From Scryfall.com</sup><sup>sorted by initial release date</sup>",  
+            'text': "Price of Lands per Set<br><sup> Data From Scryfall.com</sup><sup> sorted by initial release date</sup>",  
             'font': {
                 'size': 24,          
             },
@@ -45,7 +44,6 @@ if chart_type == 'Polar Chart':
 
     st.plotly_chart(fig)
 
-# Create Bar Chart
 elif chart_type == 'Bar Chart':
     fig = px.bar(
         grouped_df, 
