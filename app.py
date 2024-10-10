@@ -15,7 +15,7 @@ with col2:
     st.markdown(
         '''<div style="text-align: Left;  display: inline-block;width: auto; left:30%"><h4>For Easier Viewing:</h4>
         <li>View in "Fullscreen" or on Desktop</li>
-        <li>Click set name in Legend to remove from graph</li>
+        <li>Ctrl+F and Click set name in Legend to remove from graph</li>
         <li>Mouseover/Touch for details</li>
         </div>
         ''', unsafe_allow_html=True
