@@ -2,14 +2,29 @@ import streamlit as st
 import plotly.express as px
 import pandas as pd
 
+
+st.set_page_config(layout="wide")
+
 grouped_df = pd.read_csv('grouped_lands.csv')
 
-st.title("Total Price of Basic Lands by Set")
+st.title("Total Price of Basic Lands by Set ")
+st.header("Data From Scryfall.com")
 
-chart_type = st.radio(
-    "Select chart type:",
-    ('Polar Chart', 'Bar Chart')
-)
+col1, col2 = st.columns([3, 1])
+with col2:
+    st.markdown(
+        '''<div style="text-align: Left;  display: inline-block;width: auto; left:30%"><h4>For Easier Viewing:</h4>
+        <li>View in "Fullscreen" or on Desktop</li>
+        <li>Click set name in Legend to remove from graph</li>
+        <li>Mouseover/Touch for details</li>
+        </div>
+        ''', unsafe_allow_html=True
+    ) 
+with col1:
+    chart_type = st.radio(
+        "Select chart type:",
+        ('Polar Chart', 'Bar Chart')
+    )
 
 if chart_type == 'Polar Chart':
     fig = px.bar_polar(
@@ -18,23 +33,31 @@ if chart_type == 'Polar Chart':
         r='usd',
         hover_data=['set', 'usd', 'usd_foil', 'usd_etched'],
         color='set', 
-        height=1000,
+        height=1250,
+    )
+    
+    fig.update_layout(
+        legend=dict(
+            orientation="h", 
+            yanchor="top", 
+            y=-0.1, 
+            xanchor="center", 
+            x=0.5 
+            ),
+        margin=dict(t=50, b=50, l=50, r=50),
+
     )
 
-    fig.update_layout(
-        legend=dict(),
-        margin=dict(t=50, b=50, l=50, r=50)
-    )
 
     fig.update_layout(
         title={
-            'text': "Price of Lands per Set<br><sup> Data From Scryfall.com</sup><sup> sorted by initial release date</sup>",  
+            'text': "Sorted outward by initial release date",  
             'font': {
-                'size': 24,          
+                'size': 18,          
             },
             'x': 0.5,               
             'xanchor': 'center',   
-            'y': 0.95,              
+            'y': 1,              
             'yanchor': 'top'       
         },
         titlefont=dict(
@@ -42,7 +65,7 @@ if chart_type == 'Polar Chart':
         )
     )
 
-    st.plotly_chart(fig)
+    st.plotly_chart(fig, use_container_width=True)
 
 elif chart_type == 'Bar Chart':
     fig = px.bar(
@@ -51,25 +74,47 @@ elif chart_type == 'Bar Chart':
         y='usd', 
         color='set', 
         hover_data=['set', 'usd', 'usd_foil', 'usd_etched'],
-        height=1000
+        height=1000,
+        labels={
+                     "name": "Land Type",
+                     "usd": "Price in USD"
+        }
     )
-
+ 
     fig.update_layout(
         title={
-            'text': "Price of Lands per Set<br><sup>Data From Scryfall.com</sup><sup>sorted by initial release date</sup>",  
+            'text': "Sorted by initial release date",  
             'font': {
-                'size': 24,          
+                'size': 18,          
             },
-            'x': 0.5,               
+            'x': 0.5,    
             'xanchor': 'center',   
-            'y': 0.95,              
+            'y': 1,              
             'yanchor': 'top'       
         },
         titlefont=dict(
             family="Arial, sans-serif",  
         ),
-        margin=dict(t=50, b=50, l=50, r=50),
-        legend=dict(orientation="h", yanchor="bottom", y=-0.2, xanchor="center", x=0.5)
+        margin=dict(t=50, b=100, l=50, r=50), 
+        legend=dict(
+            orientation="h", 
+            yanchor="bottom", 
+            y=-1.3,  
+            xanchor="center", 
+            x=0.5
+        ),
+        xaxis_title=dict(
+            font=dict(size=14),
+           
+        )
     )
 
-    st.plotly_chart(fig)
+    st.plotly_chart(fig, use_container_width=True)
+    # st.markdown(''' 
+    #     <style>
+    #     .appview-container .main .block-container {
+    #         padding-left: 0%;  /* Adjust these values */
+    #         padding-right: 0%; /* Adjust these values */
+    #     }
+    #     </style>
+    # ''', unsafe_allow_html=True)
