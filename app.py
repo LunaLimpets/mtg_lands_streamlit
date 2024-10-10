@@ -13,14 +13,21 @@ st.header("Data From Scryfall.com")
 
 mode = st.radio(
         "Select Mode:",
-        ('All Sets', 'One Set')
+        ('All Sets', 'One Set', "Multiple Sets")
     )
+
+
+    
 
 if mode == "All Sets":
     vis_df = grouped_df
-else:
+elif mode == "One Set":
     dropdown_value = st.selectbox('Select a  Set', grouped_df['set'].unique())
     vis_df = grouped_df.loc[grouped_df['set'] == dropdown_value]
+elif mode == "Multiple Sets":
+    multi_value = st.multiselect('Select Sets', grouped_df['set'].unique())
+    vis_df = grouped_df.loc[grouped_df['set'].isin(multi_value)]
+
 
 
 
